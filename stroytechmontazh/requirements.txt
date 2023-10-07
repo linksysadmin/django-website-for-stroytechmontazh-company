@@ -12,8 +12,8 @@ libsass==0.22.0
 packaging==23.2
 Pillow==10.0.1
 python-dotenv==1.0.0
-rcssmin==1.1.2
+rcssmin==1.1.1
 requests==2.31.0
-rjsmin==1.2.2
+rjsmin==1.2.1
 sqlparse==0.4.4
 urllib3==2.0.6

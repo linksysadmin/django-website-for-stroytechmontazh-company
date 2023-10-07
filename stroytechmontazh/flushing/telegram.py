@@ -9,7 +9,6 @@ def send_message(user_data):
     text = get_template('flushing/message.html')
     context = {'name': user_data['name'], 'phone': user_data['phone']}
     text_content = text.render(context)
-    print(text_content)
 
     params = {
         'chat_id': settings.TELEGRAM_GROUP_CHAT_ID,
