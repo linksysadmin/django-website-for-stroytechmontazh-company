@@ -1,0 +1,195 @@
+{% extends 'flushing/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+  {% if messages %}
+  <div class="transparent-message">
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  </div>
+  {% endif %}
+
+    <div class="site-blocks-cover overlay bg-light" style="background-image: url('{% static 'flushing/images/heating-system.webp' %}'); " id="home-section">
+      <div class="container">
+        <div class="row justify-content-center">
+
+          <div class="col-12 text-center align-self-center text-intro">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay="">Промывка систем отопления</h1>
+                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">Промывка систем отопления без необходимости снятия радиаторов. Мы используем современные методы гидропневматической и химической промывки, которые позволяют эффективно очистить систему от различных отложений и загрязнений. Обращайтесь к нам и мы сделаем вашу систему отопления более эффективной и безопасной!</p>
+                <p data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-primary">Услуги</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--  ABOUT-->
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative">
+            <h2 class="section-title">О нас</h2>
+          </div>
+          <div class="col-lg-4">
+            <p>Компания "Стройтехмонтаж" - это профессиональная организация, специализирующаяся на промывке систем
+              отопления и различного оборудования. Мы предлагаем широкий спектр услуг по обслуживанию и оптимизации
+              систем отопления для клиентов в различных сферах деятельности, включая жилые дома, коммерческие здания,
+              офисы и промышленные объекты.</p>
+          </div>
+          <div class="col-lg-4">
+            <p>
+              Мы стремимся предоставить нашим клиентам высокий уровень сервиса, точность и профессионализм во всех
+              аспектах нашей работы. Наша цель - обеспечить надежное и эффективное функционирование систем отопления,
+              что позволяет нашим клиентам сэкономить энергию, снизить расходы на обслуживание и создать комфортные условия проживания!
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <p>Наша команда квалифицированных специалистов имеет богатый опыт работы с различными типами систем отопления
+              и оборудования. Мы понимаем важность эффективной работы системы отопления для обеспечения комфорта и
+              энергоэффективности в зданиях. Поэтому мы стремимся предоставить высококачественные услуги промывки,
+              чтобы улучшить работу системы отопления и продлить ее срок службы.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END ABOUT-->
+
+<!--  SERVICES-->
+    <div class="site-section" id="services-section">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-5 position-relative">
+            <h2 class="section-title text-center mb-5">Услуги</h2>
+          </div>
+
+          {% for service in services %}
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
+              <div class="service d-flex h-100">
+                <div class="svg-icon">
+                  <img src="{% static 'flushing/images/service-image.webp' %}" alt="{{ service.title }}" class="img-fluid">
+                </div>
+                <a style="color: #666666;" href="{{ service.get_absolute_url }}">
+                  <div class="service-about">
+                  <h3>{{ service.title }}</h3>
+                  <p>{{ service.service_type }}</p>
+                  {% if service.price == 0 %}
+                    <p class="price">Цена договорная</p>
+                  {% else %}
+                    <p class="price">Стоимость - {{ service.price }}</p>
+                  {% endif %}
+                  <p>{{ service.description|truncatewords:13 }}</p>
+                  <p class="more"><a href="{{ service.get_absolute_url }}">Читать далее</a></p>
+                </div>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+<!-- END SERVICES-->
+
+    <section class="site-section block__62272" id="projects-section">
+
+
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 position-relative">
+            <h2 class="section-title text-center mb-5">Работы</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-5" data-aos="fade">
+          <div id="filters" class="filters text-center button-group col-md-7">
+            <button class="btn btn-primary active" data-filter="*">Все</button>
+            {% for type in flushing_types %}
+                <button class="btn btn-primary" data-filter=".{{ type.pk }}">{{ type.title }}</button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div id="posts" class="row no-gutter">
+          {% for image in flushing_galleries %}
+              <div class="item {{ image.service.pk }} col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
+                <a href="{{ image.image.url }}" class="item-wrap fancybox">
+                  <span class="icon-search2"></span>
+                  <img class="img-fluid" src="{{ image.image.url }}">
+                </a>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+
+    <section class="site-section bg-primary">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-5 position-relative">
+            <h2 class="section-title text-center mb-5 text-white">Отзывы клиентов</h2>
+          </div>
+        </div>
+        <div class="owl-carousel slide-one-item">
+
+          {% for review in reviews %}
+          <div class="slide">
+            <img style="max-width: 20%;" src="{% static 'flushing/images/reviews/review.webp' %}" alt="Отзыв клиента">
+            <blockquote>
+              <p>{{ review.text }}</p>
+              <p><cite>&mdash; {{ review.client_name }}</cite></p>
+            </blockquote>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+
+    <section class="site-section bg-light" id="blog-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-12 mb-5 position-relative">
+            <h2 class="section-title text-center mb-5">Статьи</h2>
+          </div>
+
+          {% for article in articles %}
+          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
+            <div class="blog_entry">
+              {% if article.image.url %}
+              <a href="{{ article.get_absolute_url }}">
+                <img src="{{ article.image.url }}" alt="Image" class="img-fluid">
+              </a>
+              {% endif %}
+              <div class="p-4 bg-white">
+                <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+                <span class="date">{{ article.time_create }}</span>
+                <p>{{ service.content|truncatewords:13 }}</p>
+                <p class="more"><a href="{{ article.get_absolute_url }}">Подробнее</a></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+
+
+
+
+
+
+
+
