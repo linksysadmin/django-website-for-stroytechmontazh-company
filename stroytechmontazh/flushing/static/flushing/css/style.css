@@ -619,7 +619,7 @@ body:after {
   .site-blocks-cover .lead {
     font-family: "Jost", sans-serif;
     font-display: swap;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #1a1a1a; }
   .site-blocks-cover.overlay {
     position: relative; }
