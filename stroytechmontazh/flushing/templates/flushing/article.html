@@ -1,6 +1,9 @@
 {% extends 'flushing/layout.html' %}
 {% load static %}
 
+{% block title %}{{ article.title }}{% endblock %}
+{% block description %}{{ article.title }}{% endblock %}
+
 {% block content %}
     <div class="site-blocks-cover overlay bg-light" style="background-image: url('{% static 'flushing/images/background-article.webp' %}'); " id="home-section">
       <div class="container">
