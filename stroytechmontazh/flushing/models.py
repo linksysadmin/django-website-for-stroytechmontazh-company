@@ -2,6 +2,11 @@ from django.db import models
 from django.urls import reverse
 
 
+class PublishedModel(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=1)
+
+
 class TypeFlushingService(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
@@ -17,6 +22,10 @@ class TypeFlushingService(models.Model):
 
 
 class FlushingService(models.Model):
+    class Status(models.IntegerChoices):
+        NOT_PUBLISHED = 0, 'Не опубликовано'
+        PUBLISHED = 1, 'Опубликовано'
+
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     service_type = models.ForeignKey(TypeFlushingService, on_delete=models.CASCADE, verbose_name='Тип промывки')
@@ -24,6 +33,9 @@ class FlushingService(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Стоимость')
     image = models.ImageField(upload_to='service_images/', null=True, blank=True, verbose_name='Изображение')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    objects = models.Manager()
+    published = PublishedModel()
 
     def __str__(self):
         return self.title
@@ -118,3 +130,6 @@ class TopicArticle(models.Model):
         verbose_name = 'Тема статьи'
         verbose_name_plural = 'Темы статей'
         ordering = ['name']
+
+
+

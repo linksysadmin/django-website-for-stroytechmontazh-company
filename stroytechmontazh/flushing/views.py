@@ -3,7 +3,7 @@ from .models import *
 from .forms import ContactForm
 from django.contrib import messages
 
-from .telegram import send_message
+from .telegram import send_message_to_telegram
 
 
 def index(request):
@@ -16,11 +16,13 @@ def index(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+            # messages.add_message(request, 20, "!!!Заявка успешно отправлена!")
             messages.success(request, "Заявка успешно отправлена!")
             user_data = form.cleaned_data
-            send_message(user_data)
+            send_message_to_telegram(user_data)
             return redirect('index')
 
+    # messages.get_messages(request)
     context = {
         'flushing_types': flushing_type,
         'flushing_galleries': flushing_galleries,

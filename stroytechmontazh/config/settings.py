@@ -23,7 +23,12 @@ CSRF_COOKIE_SECURE = True
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 # SECURE_SSL_REDIRECT = True
-
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': os.path.join(BASE_DIR, 'cache'),
+#     }
+# }
 
 ALLOWED_HOSTS = ['94.131.111.6', 'localhost', 'stroytechmontazh.ru', '127.0.0.1']
 

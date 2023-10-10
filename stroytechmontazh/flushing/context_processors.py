@@ -7,7 +7,7 @@ def contact_form(request):
 
 
 def services(request):
-    return {'services': FlushingService.objects.order_by('service_type')}  # type: ignore
+    return {'services': FlushingService.published.order_by('title')}
 
 
 def topics(request):

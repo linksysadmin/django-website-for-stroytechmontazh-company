@@ -1053,7 +1053,7 @@ body:after {
     padding: 10px;
     color: black;
     border-radius: 20px;
-    z-index: 7800;
+    z-index: 9000;
 }
 
 .transparent-message ul {
