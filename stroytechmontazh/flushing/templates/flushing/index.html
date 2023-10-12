@@ -86,7 +86,7 @@
                   {% if service.price == 0 %}
                     <p class="price">Цена договорная</p>
                   {% else %}
-                    <p class="price">Стоимость - {{ service.price }}</p>
+                    <p class="price">Стоимость - {{ service.price|floatformat:"0" }} руб.</p>
                   {% endif %}
                   <p>{{ service.description|truncatewords:13 }}</p>
                   <p class="more"><a href="{{ service.get_absolute_url }}">Читать далее</a></p>
@@ -100,9 +100,83 @@
     </div>
 <!-- END SERVICES-->
 
+
+<!--  WHEREFORE-->
+    <div class="site-section" id="wherefore">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative">
+            <h2 class="section-title text-center mb-5">Для чего нужна промывка системы отопления и различного оборудования?</h2>
+            <p>Промывка является важной процедурой для поддержания эффективной работы и продолжительного срока службы
+              системы отопления и оборудования. Ниже перечислены причины промывки системы отопления.</p>
+
+          </div>
+          <div class="col-lg-4">
+            <h3>Удаление отложений и загрязнений</h3>
+            <p>
+              С течением времени система отопления и оборудование могут накапливать различные отложения, такие как ржавчина,
+              накипь, грязь и другие загрязнения. Эти отложения могут негативно влиять на эффективность работы системы и
+              приводить к снижению производительности. Промывка позволяет удалить эти отложения и восстановить
+              нормальную работу системы.
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <h3>Предотвращение засорений</h3>
+            <p>Промывка также предотвращает засорение систем отопления и оборудования. Засорения могут возникать из-за
+              накопления мусора, примесей, коррозии или ржавчины в трубках, радиаторах, насосах и других компонентах
+              системы. Засорения могут привести к ограничению потока воды или теплоносителя, а также повысить риск
+              поломки оборудования. Промывка системы помогает удалить засорения и обеспечить плавный и надежный
+              процесс отопления.</p>
+          </div>
+          <div class="col-lg-4">
+            <h3>Улучшение эффективности</h3>
+            <p>Чистая система отопления работает более эффективно, что позволяет снизить потребление энергии и расходы
+              на отопление. Промывка помогает восстановить эффективность системы и повысить ее производительность.
+              Чистые трубы и оборудование позволяют жидкости и теплоносителям свободно циркулировать, что способствует
+              более равномерному и эффективному распределению тепла.</p>
+          </div>
+          <div class="col-lg-4">
+            <h3>Предотвращение поломок и повреждений</h3>
+            <p>Загрязнения и отложения в системе отопления могут вызывать поломки и повреждения оборудования. Например,
+              накипь в котлах может повредить теплообменники или вызвать неправильную работу клапанов и насосов.
+              Ржавчина и коррозия могут привести к протечкам или поломке трубок и радиаторов. Регулярная промывка
+              помогает предотвратить подобные поломки и повреждения, что экономит вам деньги на ремонте и замене оборудования.</p>
+          </div>
+          <div class="col-lg-4">
+            <h3>Повышение безопасности</h3>
+            <p>Чистая и безопасная работа системы отопления очень важна для обеспечения комфорта и безопасности вашего
+              дома или офиса. Отложения и загрязнения могут привести к повышенному риску контакта с токсичными веществами
+              или загазованным воздухом. Промывка системы позволяет устранить эти риски и обеспечить безопасную эксплуатацию
+              отопительного оборудования.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END WHEREFORE-->
+
+<!--  PRICE-->
+    <div class="site-section" id="price">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative" style="text-align: -webkit-center;">
+            <h2 class="section-title text-center mb-5">Стоимость промывки</h2>
+            <table border="0" class="table_price">
+             <tr>
+              <th scope="row">Услуга</th>
+              <th scope="row">Тип промывки</th>
+              <th scope="row">Стоимость</th>
+             </tr>
+              {% for service in services %}
+               <tr><td>{{ service.title }}</td><td>{{ service.service_type }}</td><td>{% if service.price == 0 %}Договорная{% else %} {{ service.price|floatformat:"0" }} руб.{% endif %}</td></tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END PRICE-->
+
     <section class="site-section block__62272" id="projects-section">
-
-
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 position-relative">
@@ -141,16 +215,20 @@
           </div>
         </div>
         <div class="owl-carousel slide-one-item">
-
           {% for review in reviews %}
           <div class="slide">
-            <img style="max-width: 20%;" src="{% static 'flushing/images/reviews/review.webp' %}" alt="Отзыв клиента">
+<!--            <img style="max-width: 20%;" src="{% static 'flushing/images/reviews/review.webp' %}" alt="Отзыв клиента">-->
             <blockquote>
               <p>{{ review.text }}</p>
               <p><cite>&mdash; {{ review.client_name }}</cite></p>
             </blockquote>
           </div>
           {% endfor %}
+        </div>
+        <div class="row">
+          <div class="col-12 mb-5 position-relative">
+            <p class="section-title text-center mb-5 text-white"><a href="https://www.avito.ru/user/6bb504594c283003e017d99450fa00e7/profile?id=2820510183&src=item&page_from=from_item_card_icon&iid=2820510183#open-reviews-list">Просмтр отзывов на Avito.ru</a></p>
+          </div>
         </div>
       </div>
     </section>

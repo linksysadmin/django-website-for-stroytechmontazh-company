@@ -103,6 +103,9 @@ class Article(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     image = models.ImageField(upload_to='articles_images/', null=True, blank=True, verbose_name='Изображение')
 
+    objects = models.Manager()
+    published = PublishedModel()
+
     def __str__(self):
         return self.title
 

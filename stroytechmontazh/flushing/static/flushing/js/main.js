@@ -205,23 +205,31 @@ jQuery(document).ready(function($) {
 	};
 	siteSticky();
 
-	// navigation
-//  var OnePageNavigation = function() {
-//    var navToggler = $('.site-menu-toggle');
-//   	$("body").on("click", ".main-menu li a[href^='#'], .smoothscroll[href^='#'], .site-mobile-menu .site-nav-wrap li a", function(e) {
-//      e.preventDefault();
+
+//// Обработчик событий для ссылок в меню
+//var menuLinks = document.querySelectorAll('.site-menu a');
 //
-//      var hash = this.hash;
+//menuLinks.forEach(function(link) {
+//  link.addEventListener('click', function(e) {
+//    e.preventDefault(); // Отмените стандартное поведение перехода по ссылке
 //
-//      $('html, body').animate({
-//        'scrollTop': $(hash).offset().top
-//      }, 600, 'easeInOutExpo', function(){
-//        window.location.hash = hash;
+//    // Получите id из ссылки
+//    var targetId = this.getAttribute('href').substring(1);
+//
+//    // Проверьте, существует ли элемент с указанным id на странице
+//    var targetElement = document.getElementById(targetId);
+//
+//    if (targetElement) {
+//      // Выполните плавный скроллинг к целевому элементу
+//      targetElement.parentElement.scrollIntoView({
+//        behavior: 'smooth' // Добавьте плавность скроллинга
 //      });
-//
-//    });
-//  };
-//  OnePageNavigation();
+//    } else {
+//      // Перенаправьте на домашнюю страницу или другую страницу, если целевой элемент не найден
+//      window.location.href = this.href;
+//    }
+//  });
+//});
 
   var siteScroll = function() {
 

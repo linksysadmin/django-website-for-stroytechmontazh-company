@@ -37,9 +37,11 @@ INTERNAL_IPS = [
 ]
 
 INSTALLED_APPS = [
+    'django.contrib.sitemaps',  # For sitemap.xml
+    'django.contrib.sites',  # For sitemap.xml
     # "debug_toolbar",
+    'sass_processor',  # For context_processors.py
     'flushing',
-    'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,8 +50,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+SITE_ID = 1  # For sitemap.xml
+
 MIDDLEWARE = [
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",  # For debug
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
