@@ -7,9 +7,52 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postg
 python3 manage.py check --deploy 
 ```
 Для переноса данных:
+```
 python manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+```
 
+```
+python manage.py loaddata db.json
+```
+### POSTGRESQL
 
+```
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - ;
+RELEASE=$(lsb_release -cs) ;
+echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list ;
+sudo apt update ;
+sudo apt -y install postgresql-11 ;
+sudo passwd postgres
+su - postgres
+export PATH=$PATH:/usr/lib/postgresql/11/bin
+createdb --encoding UNICODE dbms_db --username postgres
+exit
+sudo -u postgres psql
+    create user dbms with password 'some_password';
+    ALTER USER dbms CREATEDB;
+    grant all privileges on database dbms_db to dbms;
+    \c dbms_db
+    GRANT ALL ON ALL TABLES IN SCHEMA public to dbms;
+    GRANT ALL ON ALL SEQUENCES IN SCHEMA public to dbms;
+    GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to dbms;
+    CREATE EXTENSION pg_trgm;
+    ALTER EXTENSION pg_trgm SET SCHEMA public;
+    UPDATE pg_opclass SET opcdefault = true WHERE opcname='gin_trgm_ops';
+    \q
+exit
+
+nano ~/.pgpass
+	localhost:5432:dbms_db:inside:some_password
+chmod 600 ~/.pgpass
+psql -h localhost -U inside dbms_db
+```
+
+Если ошибка PERMISSION:
+```
+ALTER DATABASE database OWNER TO user;
+```
+
+python manage.py migrate
 
 ### Установка компонентов на сервере
 ```
@@ -168,9 +211,9 @@ sudo systemctl restart nginx
 
 
 ### Логи
-
+```
 sudo tail -F /var/log/nginx/error.log
-
+```
 Check the Nginx process logs: 
 ```sudo journalctl -u nginx```
 
@@ -182,6 +225,7 @@ Check the Nginx error logs:
 
 Check the Gunicorn application logs:
 ``` sudo journalctl -u gunicorn```
+```sudo journalctl -u gunicorn -n 10```
 
 Check the Gunicorn socket logs: 
 ```sudo journalctl -u gunicorn.socket```
@@ -201,3 +245,122 @@ If you change the Nginx server block configuration, test the configuration and t
 ```
 sudo nginx -t && sudo systemctl restart nginx
 ```
+
+
+Добавляем Robots.txt
+```
+User-agent: *                   
+                                                   
+Allow: /rss/*
+Sitemap: https://stroytechmontazh.ru/sitemap.xml
+```
+
+
+Nginx .conf
+
+```
+server {
+        server_name stroytechmontazh.ru www.stroytechmontazh.ru;
+        charset utf-8;
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location /static/ {
+                root /var/www/stroytechmontazh;           #путь до static каталога
+                expires max;
+        }
+
+        location /robots.txt {
+                alias /var/www/stroytechmontazh/robots.txt;
+        }
+
+        location /media/ {
+                root /var/www/stroytechmontazh;           #путь до media каталога
+        }
+
+        location / {
+            include proxy_params;
+            proxy_pass http://unix:/run/gunicorn.sock;
+        }
+
+    listen 443 ssl http2; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/stroytechmontazh.ru/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/stroytechmontazh.ru/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+    if ($host = stroytechmontazh.ru) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        server_name stroytechmontazh.ru www.stroytechmontazh.ru;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
+```
+
+
+### Настройка sitemap.xml
+settings.py
+```
+INSTALLED_APPS = [
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
+    ...
+    ]
+
+SITE_ID = 1
+```
+
+
+
+sitemaps.py
+```
+from django.contrib.sitemaps import Sitemap
+from flushing.models import *
+
+
+class ServicesSitemap(Sitemap):
+    def items(self):
+        return FlushingService.published.all()
+
+
+class ArticlesSitemap(Sitemap):
+    def items(self):
+        return Article.published.all()
+
+
+class TopicArticleSitemap(Sitemap):
+    def items(self):
+        return TopicArticle.objects.all()
+```
+
+stroytechmontazh/config/urls.py
+```
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import *
+
+sitemaps = {
+    'services': ServicesSitemap,
+    'articles': ArticlesSitemap,
+    'topic_articles': TopicArticleSitemap,
+}
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('', include('flushing.urls')),
+]
+```
+http://127.0.0.1:8000/admin
+Изменить url адрес для формирования sitemap.xml на свое доменное имя
+```
+sudo systemctl daemon-reload && sudo systemctl restart gunicorn.socket gunicorn.service
+```
+
+
+

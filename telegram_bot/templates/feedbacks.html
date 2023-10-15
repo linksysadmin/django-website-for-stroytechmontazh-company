@@ -1,0 +1,4 @@
+Заказы обратных звонков:
+<b>Дата</b>    |     <b>Имя</b>     |    <b>Номер</b>
+{% for feedback in feedbacks %} ({{ feedback.time_create.strftime('%Y-%m-%d') }}) | {{ feedback.name }} | {{ feedback.phone }} -
+{% endfor %}

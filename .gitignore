@@ -3,4 +3,11 @@ venv
 stroytechmontazh/db.sqlite3
 .idea
 __pycache__/
+cache
 
+
+# telegram bot
+/telegram_bot/logs/*
+/telegram_bot/static/objects_offers/*
+/telegram_bot/venv
+/telegram_bot/.env
