@@ -120,14 +120,14 @@ sudo nano /etc/systemd/system/gunicorn.service
     After=network.target
     
     [Service]
-    User=sammy
+    User=inside
     Group=www-data
-    WorkingDirectory=/home/sammy/myprojectdir
-    ExecStart=/home/sammy/myprojectdir/myprojectenv/bin/gunicorn \
+    WorkingDirectory=/var/www/stroytechmontazh
+    ExecStart=/var/www/stroytechmontazh/venv/bin/gunicorn \
               --access-logfile - \
               --workers 3 \
               --bind unix:/run/gunicorn.sock \
-              myproject.wsgi:application
+              config.wsgi:application
     
     [Install]
     WantedBy=multi-user.target
@@ -360,6 +360,30 @@ http://127.0.0.1:8000/admin
 Изменить url адрес для формирования sitemap.xml на свое доменное имя
 ```
 sudo systemctl daemon-reload && sudo systemctl restart gunicorn.socket gunicorn.service
+```
+
+
+
+
+
+## Telegram BOT
+Предоставление разрешений 
+```sudo chmod 777 /var/www/telegram_bot_for_stroytechmontazh -R```
+
+Проверка
+```gunicorn --bind 0.0.0.0:8002 main:app```
+
+Создаем файлы в /etc/systemd/system/
+
+
+sudo nano /etc/systemd/system/telegram_bot_for_stm.service
+[gunicorn.service](telegram_bot%2Fgunicorn%2Ftelegram_bot_for_stm.service)
+sudo nano /etc/systemd/system/telegram_bot_for_stm.socket
+[gunicorn.socket](telegram_bot%2Fgunicorn%2Ftelegran_bot_for_stm.socket)
+
+```
+sudo systemctl daemon-reload && sudo systemctl restart telegram_bot_for_stm.socket telegram_bot_for_stm.service
+sudo systemctl status telegram_bot_for_stm.service 
 ```
 
 
