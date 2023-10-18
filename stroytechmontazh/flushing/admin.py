@@ -10,7 +10,7 @@ class TypeFlushingServiceAdmin(admin.ModelAdmin):
 
 
 class FlushingServiceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'is_published')
+    list_display = ('id', 'title', 'service_type', 'price', 'unit', 'is_published', 'article')
     list_display_links = ('id', 'title')
     search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}

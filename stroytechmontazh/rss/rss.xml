@@ -1,0 +1,88 @@
+<rss xmlns:yandex="http://news.yandex.ru"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:turbo="http://turbo.yandex.ru"
+    version="2.0">
+    <channel>
+        <title>Стройтехмонтаж</title>
+        <link>https://stroytechmontazh.ru</link>
+        <description>Промывка систем отопления в Москве и Московской области</description>
+        <language>ru</language>
+        <item turbo="true">
+            <turbo:extendedHtml>true</turbo:extendedHtml>
+            <link>https://stroytechmontazh.ru/</link>
+            <turbo:topic>Главная страница</turbo:topic>
+            <title>
+            <![CDATA[ Главная страница ]]>
+            </title>
+            <turbo:content>
+                <![CDATA[
+                <header>
+                <h1>ПРОМЫВКА СИСТЕМЫ ОТОПЛЕНИЯ</h1>
+                </header>
+                <div class="subtitle">Москва и московская область</div>
+                <h2>Промывка систем отопления и различного оборудования.</h2>
+                <button formaction="tel:+7(930)934-68-19" data-background-color="#53bae6" data-color="white" data-primary="true">Заказать услугу</button>
+                <h3>Как повысить тепло в доме? Начнем с промывки системы отопления!</h3>
+                <p>Компания "Стройтехмонтаж" выполняет работы по промывке систем отопления, наладке и обслуживанию отопительного оборудования.
+                Большой опыт наших специалистов позволит в краткие сроки выполнить работы по промывке системы отопления и отопительного оборудования.
+                Готовы предоставить наши услуги в кратчайшие сроки!</p>
+                <div data-block="cards">
+                    <div data-block="carousel">
+                        <header>УСЛУГИ</header>
+                        <div data-block="snippet" data-title="Комплексная промывка" data-img="https://stroytechmontazh.ru/wp-content/uploads/2023/09/complex_flushing-scaled.webp" data-url="https://stroytechmontazh.ru/comprehensive-flushing/"> </div>
+                        <div data-block="snippet" data-title="Промывка напольных котлов" data-img="https://stroytechmontazh.ru/wp-content/uploads/2023/09/stroytechmontazh_picture_4-1024x683.webp" data-url="https://stroytechmontazh.ru/washing-floor-boilers/"> </div>
+                        <div data-block="snippet" data-title="Промывка настенных котлов" data-img="https://stroytechmontazh.ru/wp-content/uploads/2023/09/stroytechmontazh_picture_2-1024x683.webp" data-url="https://stroytechmontazh.ru/washing-wall-boilers/"> </div>
+                        <div data-block="snippet" data-title="Промывка радиаторов" data-img="https://stroytechmontazh.ru/wp-content/uploads/2023/09/stroytechmontazh_picture_5-1024x445.webp" data-url="https://stroytechmontazh.ru/flushing-radiators-heating"> </div>
+                        <div data-block="snippet" data-title="Промывка теплых полов" data-img="https://stroytechmontazh.ru/wp-content/uploads/2023/09/stroytechmontazh_picture_1-1024x683.webp" data-url="https://stroytechmontazh.ru/washing-warm-floors/"> </div>
+                    </div>
+                </div>
+                <h2> Для чего нужна промывка системы отопления ? </h2>
+                <p>
+                Комплексная промывка системы отопления является важным процессом обслуживания, который помогает
+                улучшить работу системы и продлить ее срок службы. В ходе данной процедуры производится удаление накопившейся
+                 грязи, накипи, ржавчины и других отложений, которые могут негативно влиять на эффективность работы отопительной
+                  системы.
+                  </p>
+
+                <h2> Процес промывки системы отопления </h2>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/dbY6LkzaaqI?si=6tSk2ezu4zGVAjrU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <h2> Принципальная схема промывки системы отопления </h2> <figure> <img src="https://stroytechmontazh.ru/wp-content/uploads/2023/09/heating-system-flushing-diagram.png"> </figure> <h2>Стоимость услуг</h2>
+                <p>Гарантия и выгодные цены для наших клиентов! Убедитесь в этом сами!</p>
+                <table data-invisible="false">
+                    <tr> <th>Промывка</th> <th>Мощьность</th> <th>Стоимость</th> </tr>
+                    <tr> <td>Гидропневматическая-комплексная</td> <td></td> <td> 200 р/м²</td> </tr>
+                    <tr> <td>Гидропневматическая настенного котла</td> <td>До 30 кВт</td> <td>3000 руб.</td> </tr>
+                    <tr> <td>Гидропневматическая напольного котла</td> <td>До 30 кВт</td> <td>7000 руб.</td> </tr>
+                    <tr> <td>Гидропневматическая теплого пола</td> <td>1 контур</td> <td>1600 руб.</td> </tr>
+                    <tr> <td>Гидропневматическая радиаторов</td> <td>1 радиатор</td> <td>1500 руб.</td> </tr>
+                    <tr> <td>Гидропневматическая теплообменника бака косвенного нагрева</td> <td>1 теплообменник</td> <td>3000 руб.</td> </tr>
+                    <tr> <td>Гидропневматическая другого оборудования</td> <td>Свыше 30 кВт</td> <td>Договорная</td></tr>
+                    <tr> <td>Химическая настенного котла</td> <td>До 30 кВт</td> <td>10000 руб.</td> </tr>
+                    <tr> <td>Химическая напольного котла</td> <td>До 30 кВт</td> <td>10000 руб.</td> </tr>
+                    <tr> <td>Химическая другого оборудования</td> <td>Свыше 30 кВт</td> <td>Договорная</td></tr>
+                </table>
+                <table data-invisible="false">
+                    <tr> <th>Дополнительно</th> <th>руб/л</th> <th>Пометка</th></tr>
+                    <tr> <td>Реагент</td> <td>500</td> <td>Необходимо ~ 1,5 л на каждые 6 кВт</td> </tr>
+                    <tr> <td>Нейтрализатор</td> <td>300</td> <td>Необходимо ~ 1 л на каждые 10 кВт</td> </tr>
+                </table>
+                <div data-block="gallery">
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_8.webp"/>
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_2.webp"/>
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_3.webp"/>
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_4.webp"/>
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_5.webp"/>
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_6.webp"/>
+                    <img src="https://stroytechmontazh.ru/wp-content/gallery/flushing-images/flushing-image_7.webp"/>
+                    <header>Наша галерея</header>
+                </div>
+                <p>Заказывайте промывку системы отопления у Нас! Подробнее у нас на сайте <a href="https://stroytechmontazh.ru">stroytechmontazh.ru</a></p>
+                <button formaction="tel:+7(930)934-68-19" data-background-color="#53bae6" data-color="white" data-primary="true">Заказать услугу</button>
+                <p>Поделиться:</p>
+                <div data-block="share" data-network="telegram, odnoklassniki, vkontakte, facebook, twitter">
+                </div>
+                <p>Наш адрес: <a href="https://yandex.com/maps/geo/ramenskoye/53063474/?ll=38.258677%2C55.544099&z=12.27">Московская область, город Раменское, Транспортный пр-д</a></p> ]]>
+            </turbo:content>
+        </item>
+    </channel>
+</rss>

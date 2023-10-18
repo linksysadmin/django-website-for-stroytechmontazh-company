@@ -24,7 +24,8 @@
               <div class="col-lg-8">
                 <h1 class="text-white" data-aos="fade-up" data-aos-delay="">Промывка систем отопления</h1>
                 <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">Промывка систем отопления без необходимости снятия радиаторов. Мы используем современные методы гидропневматической и химической промывки, которые позволяют эффективно очистить систему от различных отложений и загрязнений. Обращайтесь к нам и мы сделаем вашу систему отопления более эффективной и безопасной!</p>
-                <p data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-primary">Услуги</a></p>
+                <p data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-secondary">Услуги</a></p>
+                <p data-aos="fade-up" data-aos-delay="200"><a href="#contact-section" class="btn smoothscroll btn-primary">Заказать</a></p>
               </div>
             </div>
           </div>
@@ -65,6 +66,39 @@
     </div>
 <!-- END ABOUT-->
 
+<!--  PRICE-->
+    <div class="site-section" id="price">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative" style="text-align: -webkit-center;">
+            <h2 class="section-title text-center mb-5">Стоимость промывки</h2>
+            <table border="0" class="table_price">
+             <tr>
+              <th scope="col">№</th>
+              <th scope="col">Услуга</th>
+              <th scope="col">Тип промывки</th>
+              <th scope="col">Стоимость</th>
+             </tr>
+              {% for service in services %}
+
+               <tr>
+                 <th scope="row">{{ forloop.counter }}</th>
+                 <td>{{ service.title }}</td>
+                 <td>{{ service.service_type }}</td>
+                 <td>{% if service.unit == 'service' %}
+                   {{ service.price|floatformat:"0"  }} руб.
+                   {% else %}
+                   {{ service.price|floatformat:"0" }} руб./{{ service.get_service_unit }}
+                   {% endif %}</td>
+               </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END PRICE-->
+
 <!--  SERVICES-->
     <div class="site-section" id="services-section">
       <div class="container">
@@ -74,6 +108,7 @@
           </div>
 
           {% for service in services %}
+            {% if service.article is True %}
             <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
               <div class="service d-flex h-100">
                 <div class="svg-icon">
@@ -83,10 +118,10 @@
                   <div class="service-about">
                   <h3>{{ service.title }}</h3>
                   <p>{{ service.service_type }}</p>
-                  {% if service.price == 0 %}
-                    <p class="price">Цена договорная</p>
-                  {% else %}
+                  {% if service.unit == 'service' %}
                     <p class="price">Стоимость - {{ service.price|floatformat:"0" }} руб.</p>
+                  {% else %}
+                    <p class="price">{{ service.price|floatformat:"0"  }} руб./{{ service.get_service_unit }}
                   {% endif %}
                   <p>{{ service.description|truncatewords:13 }}</p>
                   <p class="more"><a href="{{ service.get_absolute_url }}">Читать далее</a></p>
@@ -94,6 +129,7 @@
                 </a>
               </div>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -154,27 +190,7 @@
     </div>
 <!-- END WHEREFORE-->
 
-<!--  PRICE-->
-    <div class="site-section" id="price">
-      <div class="container">
-        <div class="row ">
-          <div class="col-12 mb-4 position-relative" style="text-align: -webkit-center;">
-            <h2 class="section-title text-center mb-5">Стоимость промывки</h2>
-            <table border="0" class="table_price">
-             <tr>
-              <th scope="row">Услуга</th>
-              <th scope="row">Тип промывки</th>
-              <th scope="row">Стоимость</th>
-             </tr>
-              {% for service in services %}
-               <tr><td>{{ service.title }}</td><td>{{ service.service_type }}</td><td>{% if service.price == 0 %}Договорная{% else %} {{ service.price|floatformat:"0" }} руб.{% endif %}</td></tr>
-              {% endfor %}
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-<!-- END PRICE-->
+
 
     <section class="site-section block__62272" id="projects-section">
       <div class="container">
@@ -227,7 +243,7 @@
         </div>
         <div class="row">
           <div class="col-12 mb-5 position-relative">
-            <p class="section-title text-center mb-5 text-white"><a href="https://www.avito.ru/user/6bb504594c283003e017d99450fa00e7/profile?id=2820510183&src=item&page_from=from_item_card_icon&iid=2820510183#open-reviews-list">Просмтр отзывов на Avito.ru</a></p>
+            <p class="section-title text-center mb-5 text-white" ><a href="https://www.avito.ru/user/6bb504594c283003e017d99450fa00e7/profile?id=2820510183&src=item&page_from=from_item_card_icon&iid=2820510183#open-reviews-list" style="color: white !important;">Просмтр отзывов на Avito.ru</a></p>
           </div>
         </div>
       </div>
@@ -237,11 +253,9 @@
     <section class="site-section bg-light" id="blog-section">
       <div class="container">
         <div class="row">
-
           <div class="col-12 mb-5 position-relative">
             <h2 class="section-title text-center mb-5">Статьи</h2>
           </div>
-
           {% for article in articles %}
           <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
             <div class="blog_entry">
@@ -259,7 +273,6 @@
             </div>
           </div>
           {% endfor %}
-
         </div>
       </div>
     </section>

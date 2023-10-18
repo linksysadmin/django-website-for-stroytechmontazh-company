@@ -26,13 +26,25 @@ class FlushingService(models.Model):
         NOT_PUBLISHED = 0, 'Не опубликовано'
         PUBLISHED = 1, 'Опубликовано'
 
+    UNIT = (
+        ("service", "услуга"),
+        ("one", "единица"),
+        ("circuit", "контур"),
+        ("radiator", "радиатор"),
+        ("m", "м"),
+        ("m2", "м²"),
+        ("m3", "м³"),
+    )
+
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     service_type = models.ForeignKey(TypeFlushingService, on_delete=models.CASCADE, verbose_name='Тип промывки')
     description = models.TextField(verbose_name='Описание')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Стоимость')
+    unit = models.CharField(max_length=20, choices=UNIT, default='service', verbose_name='Единица измерения')
     image = models.ImageField(upload_to='service_images/', null=True, blank=True, verbose_name='Изображение')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    article = models.BooleanField(default=True, verbose_name='Страница - статья')
 
     objects = models.Manager()
     published = PublishedModel()
@@ -42,6 +54,10 @@ class FlushingService(models.Model):
 
     def get_absolute_url(self):
         return reverse('service', kwargs={'service_slug': self.slug})
+
+    def get_service_unit(self):
+        return dict(self.UNIT).get(self.unit)  # type: ignore
+
 
     class Meta:
         verbose_name = 'Услуга'

@@ -206,34 +206,8 @@ jQuery(document).ready(function($) {
 	siteSticky();
 
 
-//// Обработчик событий для ссылок в меню
-//var menuLinks = document.querySelectorAll('.site-menu a');
-//
-//menuLinks.forEach(function(link) {
-//  link.addEventListener('click', function(e) {
-//    e.preventDefault(); // Отмените стандартное поведение перехода по ссылке
-//
-//    // Получите id из ссылки
-//    var targetId = this.getAttribute('href').substring(1);
-//
-//    // Проверьте, существует ли элемент с указанным id на странице
-//    var targetElement = document.getElementById(targetId);
-//
-//    if (targetElement) {
-//      // Выполните плавный скроллинг к целевому элементу
-//      targetElement.parentElement.scrollIntoView({
-//        behavior: 'smooth' // Добавьте плавность скроллинга
-//      });
-//    } else {
-//      // Перенаправьте на домашнюю страницу или другую страницу, если целевой элемент не найден
-//      window.location.href = this.href;
-//    }
-//  });
-//});
 
   var siteScroll = function() {
-
-  	
 
   	$(window).scroll(function() {
 
@@ -286,6 +260,13 @@ jQuery(document).ready(function($) {
 
 	  return false;
 	});
+
+	$('.site-mobile-menu-body a').on('click', function() {
+  if ( $('body').hasClass('offcanvas-menu') ) {
+    $('body').removeClass('offcanvas-menu');
+    $('.js-menu-toggle').removeClass('active');
+  }
+});
 
 });
 
