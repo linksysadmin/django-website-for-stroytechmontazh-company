@@ -1,0 +1,90 @@
+{% extends 'services/layout.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }}{% endblock %}
+{% block description %}{{ service.title }}{% endblock %}
+
+<!-- Open graph for service -->
+{% block og_title %}{{ service.title }}{% endblock %}
+{% block og_description %}{{ service.description|truncatewords:15 }}{% endblock %}
+{% block og_type %}product{% endblock %}
+{% block og_url %}{{ service.get_absolute_url }}{% endblock %}
+{% block og_image %}{% if service.image %}{{ service.image.url }}{% else %}{% static 'flushing/images/services_base.webp' %}{% endif %}{% endblock %}
+<!-- End Open graph for service -->
+
+<!-- Card Product -->
+{% block card_product %}
+<meta property="product:price:amount" content="{{ service.price }}" />
+<meta property="product:price:currency" content="RUB" />
+<meta property="product:availability" content="В наличии" />
+{% if service.discount %}
+<meta property="product:sale_price:amount" content="{{ service.discount }}" />
+<meta property="product:sale_price:currency" content="RUB" />
+{% endif %}
+{% endblock %}
+<!-- End Card Product -->
+
+{% block content %}
+  {% if service.image %}
+    <div class="site-blocks-cover overlay bg-light" style="background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.8)), url('{{ service.image.url }}');" id="home-section">
+  {% else %}
+    <div class="site-blocks-cover overlay bg-light" style="background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.8)), url('{% static 'services/images/back-for-services-base-clear.webp' %}'); " id="home-section">
+  {% endif %}
+
+      <div class="container">
+        <div class="row justify-content-center">
+
+          <div class="col-12 text-center align-self-center text-intro">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <h1 class="text-white">{{ service.title }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="site-section first-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 blog-content">
+            <h2>{{ service.title }}</h2>
+            <p class="lead">{{ service.description }}</p>
+              {% if service.video_url %}
+            <h2 style="margin-bottom: 1em;">{{ service.title }}</h2>
+            <iframe style="width: 100%; height: 300px; max-height: 100%;" src="{{ service.video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              {% endif %}
+          </div>
+          <div class="col-md-4 sidebar">
+<!--            <div class="sidebar-box">-->
+<!--              <div class="categories">-->
+<!--                <h2 class="text-uppercase">Категории</h2>-->
+<!--                {% for topic in topics %}-->
+<!--                <li><a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a></li>-->
+<!--                {% endfor %}-->
+<!--              </div>-->
+<!--            </div>-->
+
+            <div class="sidebar-box">
+              <h2 class="text-uppercase">{{ company_info.name }}</h2>
+              <p>{{ company_info.about|truncatewords:15 }}</p>
+              <p><a href="{% url 'index' %}" class="btn btn-primary text-white">Подробнее</a></p>
+            </div>
+
+            <div class="sidebar-box">
+              <h2 class="text-uppercase">Услуги</h2>
+              <ul>
+                {% for type in services_types %}
+                <li><a href="{{ type.get_absolute_url }}">{{ type.title }}</a></li>
+                {% endfor %}
+              </ul>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

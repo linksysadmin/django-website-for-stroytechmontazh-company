@@ -1,0 +1,247 @@
+{% extends 'services/layout.html' %}
+{% load static %}
+
+
+{% block description %}Проектирование, обслуживание, ремонт и промывка систем отопления и отопительного оборудования{% endblock %}
+
+{% block content %}
+  {% if messages %}
+  <div class="transparent-message">
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  </div>
+  {% endif %}
+
+    <div class="site-blocks-cover overlay bg-light" style="background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.8)),  url('{% static 'services/images/heating-system.webp' %}'); " id="home-section">
+      <div class="container">
+        <div class="row justify-content-center">
+
+          <div class="col-12 text-center align-self-center text-intro">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay="">{{ company_info.name }}</h1>
+                <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">
+                    {{ company_info.about }}
+                </p>
+                <p data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-secondary">Услуги</a></p>
+                <p data-aos="fade-up" data-aos-delay="200"><a href="#contact-section" class="btn smoothscroll btn-primary">Заказать</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--  ABOUT-->
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative">
+            <h2 class="section-title text-center mb-5">О нас</h2>
+          </div>
+          <div class="col-lg-4">
+            <p>Мы гарантируем профессиональный подход к каждому проекту, индивидуальный подход к потребностям каждого клиента и использование передовых технологий. Наша цель - обеспечить не только качественные услуги, но и установить надежное партнерство с нашими клиентами на долгосрочной основе.
+На нашем сайте вы найдете подробную информацию о наших услугах, портфолио наших проектов и контактные данные для связи с нами. Здесь вы сможете обратиться к нам с вопросами, запросить консультацию, а также оставить заявку на необходимые работы.
+          </div>
+          <div class="col-lg-4">
+            <p>
+              Мы стремимся предоставить нашим клиентам высокий уровень сервиса, точность и профессионализм во всех
+              аспектах нашей работы. Наша цель - обеспечить надежное и эффективное функционирование систем отопления,
+              что позволяет нашим клиентам сэкономить энергию, снизить расходы на обслуживание и создать комфортные условия проживания!
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <p>Наша команда квалифицированных специалистов имеет богатый опыт работы с различными типами систем отопления
+              и оборудования. Мы понимаем важность эффективной работы системы отопления для обеспечения комфорта и
+              энергоэффективности в зданиях.
+              Надеемся, что мы сможем стать вашим надежным партнером во всех вопросах, связанных с системами отопления и отопительным оборудованием.</p>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END ABOUT-->
+
+<!--  SERVICES-->
+    <div class="site-section" id="services-section">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-5 position-relative">
+            <h2 class="section-title text-center mb-5">Услуги</h2>
+          </div>
+
+          {% for type in services_types %}
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
+              <div class="service d-flex h-100">
+                <div class="svg-icon">
+                  <img src="{% static 'services/images/service-image.webp' %}" alt="{{ type.title }}" class="img-fluid">
+                </div>
+                <a aria-label="Перейти к услуге" style="color: #666666;" href="{{ type.get_absolute_url }}">
+                  <div class="service-about">
+                  <h3>{{ type.title }}</h3>
+<!--                  <p>{{ type.}}</p>-->
+                  <p>{{ type.description|truncatewords:13 }}</p>
+                  <p class="more"><a aria-label="Подробнее" href="{{ type.get_absolute_url }}">Читать далее</a></p>
+                </div>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+<!-- END SERVICES-->
+
+<!--  PRICE-->
+    <div class="site-section" id="price">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative" style="text-align: -webkit-center;">
+            <h2 class="section-title text-center mb-5">Стоимость услуг</h2>
+            <table border="0" class="table_price">
+             <tr>
+              <th scope="col">№</th>
+              <th scope="col">Услуги</th>
+              <th scope="col">Просмотр цен</th>
+             </tr>
+              {% for type in services_types %}
+               <tr>
+                 <th scope="row">{{ forloop.counter }}</th>
+                 <td>{{ type.title }}</td>
+                 <td><a aria-label="Цены подробно" href="{{ type.get_absolute_url }}#price">Узнать цены</a></td>
+               </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END PRICE-->
+
+<!--  WHEREFORE-->
+    <div class="site-section" id="wherefore">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative">
+            <h2 class="section-title text-center mb-5">Кратко о наших услугах</h2>
+            <p>Наша компания предлагает качественные и надежные услуги для жилых, коммерческих и промышленных объектов. Мы стремимся обеспечить эффективное функционирование систем отопления, обеспечивая нашим клиентам комфорт и безопасность, а также снижая энергозатраты.</p>
+          </div>
+          {% for type in services_types %}
+          <div class="col-lg-4">
+              <a aria-label="Подробнее о типе" href="{{ type.get_absolute_url }}">
+                  <h3>{{ type.title }}</h3>
+              </a>
+
+            <p>
+              {{ type.description }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+<!-- END WHEREFORE-->
+
+
+
+    <section class="site-section block__62272" id="projects-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 position-relative">
+            <h2 class="section-title text-center mb-5">Работы</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-5" data-aos="fade">
+          <div id="filters" class="filters text-center button-group col-md-7">
+            <button class="btn btn-primary active" data-filter="*">Все</button>
+            {% for type in services_types %}
+                <button class="btn btn-primary" data-filter=".{{ type.pk }}">{{ type.title }}</button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div id="posts" class="row no-gutter">
+          {% for image in services_gallery %}
+              <div class="item {{ image.service.pk }} col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
+                <a aria-label="Увеличить" href="{{ image.image.url }}" class="item-wrap fancybox">
+                  <span class="icon-search2"></span>
+                  <img class="img-fluid" alt="{{ type.title }}" src="{{ image.image.url }}">
+                </a>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+
+    <section class="site-section bg-primary">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-5 position-relative">
+            <h2 class="section-title text-center mb-5 text-white">Отзывы клиентов</h2>
+          </div>
+        </div>
+        <div class="owl-carousel slide-one-item">
+          {% for review in reviews %}
+          <div class="slide">
+<!--            <img style="max-width: 20%;" src="{% static 'services/images/reviews/review.webp' %}" alt="Отзыв клиента">-->
+                <p><cite> {{ review.client_name }}</cite></p>
+              <blockquote>
+                <p>{{ review.text }}</p>
+              </blockquote>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row">
+          <div class="col-12 mb-5 position-relative">
+            <p class="section-title text-center mb-5 text-white" ><a href="https://www.avito.ru/user/6bb504594c283003e017d99450fa00e7/profile?id=2820510183&src=item&page_from=from_item_card_icon&iid=2820510183#open-reviews-list" style="color: white !important;">Просмтр отзывов на Avito.ru</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="site-section bg-light" id="blog-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-5 position-relative">
+            <h2 class="section-title text-center mb-5">Статьи</h2>
+          </div>
+          {% for article in articles %}
+          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
+            <div class="blog_entry">
+              <a href="{{ article.get_absolute_url }}">
+              {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid">
+              {% else %}
+                  <img src="{% static 'services/images/back-for-services-base-clear.webp' %}" alt="{{ article.title }}" class="img-fluid">
+              {% endif %}
+              </a>
+              <div class="p-4 bg-white">
+                <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+                <span class="date">{{ article.time_create }}</span>
+                <p>{{ service.content|truncatewords:13 }}</p>
+                <p class="more"><a href="{{ article.get_absolute_url }}">Подробнее</a></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+{% endblock %}
+
+
+
+
+
+
+
+
+

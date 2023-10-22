@@ -1,10 +1,10 @@
 from django.contrib.sitemaps import Sitemap
-from flushing.models import *
+from services.models import *
 
 
 class ServicesSitemap(Sitemap):
     def items(self):
-        return FlushingService.published.all()
+        return Service.published.all()
 
 
 class ArticlesSitemap(Sitemap):

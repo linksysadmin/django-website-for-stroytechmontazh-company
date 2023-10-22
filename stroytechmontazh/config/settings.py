@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
@@ -39,9 +39,9 @@ INTERNAL_IPS = [
 INSTALLED_APPS = [
     'django.contrib.sitemaps',  # For sitemap.xml
     'django.contrib.sites',  # For sitemap.xml
-    # "debug_toolbar",
+    "debug_toolbar",
     'sass_processor',  # For context_processors.py
-    'flushing',
+    'services',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,8 +52,42 @@ INSTALLED_APPS = [
 
 SITE_ID = 1  # For sitemap.xml
 
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'log.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'services': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        },
+    }
+}
+
 MIDDLEWARE = [
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",  # For debug
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # For debug
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,9 +110,9 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'flushing.context_processors.contact_form',
-                'flushing.context_processors.topics',
-                'flushing.context_processors.services',
+                'services.context_processors.contact_form',
+                'services.context_processors.services_types',
+                'services.context_processors.company_info',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

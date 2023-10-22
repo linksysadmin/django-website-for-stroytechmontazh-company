@@ -1,0 +1,69 @@
+{% extends 'services/layout.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block description %}{{ article.title }}{% endblock %}
+
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_url %}{{ article.get_absolute_url }}{% endblock %}
+
+{% block content %}
+    <div class="site-blocks-cover overlay bg-light" style="background-image: url('{% static 'services/images/background-article.webp' %}'); " id="home-section">
+      <div class="container">
+        <div class="row justify-content-center">
+
+          <div class="col-12 text-center align-self-center text-intro">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <h1 class="text-white">{{ article.title }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section first-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 blog-content">
+            {% if article.image %}
+            <p><img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid"></p>
+            {% endif %}
+            <p class="lead">{{ article.content }}</p>
+            <div class="pt-5">
+              <p>Категория: <a href="{{ article.topic.get_absolute_url }}">{{ article.topic.title }}</a></p>
+            </div>
+
+          </div>
+          <div class="col-md-4 sidebar">
+<!--            <div class="sidebar-box">-->
+<!--              <div class="categories">-->
+<!--                <h3 class="text-uppercase">Категории</h3>-->
+<!--                {% for type in services_types %}-->
+<!--                  <li><a href="{{ type.get_absolute_url }}">{{ type.title }}</a></li>-->
+<!--                {% endfor %}-->
+<!--              </div>-->
+<!--            </div>-->
+
+            <div class="sidebar-box">
+              <h3 class="text-uppercase">{{ company_info.name }}</h3>
+              <p>{{ company_info.about|truncatewords:15 }}</p>
+              <p><a href="{% url 'index' %}" class="btn btn-primary text-white">Подробнее</a></p>
+            </div>
+
+            <div class="sidebar-box">
+              <h3 class="text-uppercase">Услуги</h3>
+              <ul>
+                {% for type in services_types %}
+                  <li><a href="{{ type.get_absolute_url }}">{{ type.title }}</a></li>
+                {% endfor %}
+              </ul>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
