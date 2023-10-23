@@ -9,7 +9,8 @@
 {% block og_description %}{{ service.description|truncatewords:15 }}{% endblock %}
 {% block og_type %}product{% endblock %}
 {% block og_url %}{{ service.get_absolute_url }}{% endblock %}
-{% block og_image %}{% if service.image %}{{ service.image.url }}{% else %}{% static 'flushing/images/services_base.webp' %}{% endif %}{% endblock %}
+{% block og_image %}{% if service.image %}{{ service.image.url }}{% else %}{% static 'services/images/services_base.webp' %}{% endif %}{% endblock %}
+{% block og_image_for_tg %}{% if service.image %}{{ service.image.url }}{% else %}{% static 'services/images/services_base.webp' %}{% endif %}{% endblock %}
 <!-- End Open graph for service -->
 
 <!-- Card Product -->

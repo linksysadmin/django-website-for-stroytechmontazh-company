@@ -619,7 +619,7 @@ body:after {
     color: #1a1a1a; }
     @media (max-width: 600px) {
     .site-blocks-cover .lead {
-    font-size: 2.5vh;
+    font-size: 2vh;
     }}
   .site-blocks-cover.overlay {
     position: relative; }

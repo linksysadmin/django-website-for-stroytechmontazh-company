@@ -10,8 +10,3 @@ class ServicesSitemap(Sitemap):
 class ArticlesSitemap(Sitemap):
     def items(self):
         return Article.published.all()
-
-
-class TopicArticleSitemap(Sitemap):
-    def items(self):
-        return TopicArticle.objects.all()

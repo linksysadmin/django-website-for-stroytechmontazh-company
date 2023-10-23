@@ -11,7 +11,6 @@ from .sitemaps import *
 sitemaps = {
     'services': ServicesSitemap,
     'articles': ArticlesSitemap,
-    'topic_articles': TopicArticleSitemap,
 }
 
 

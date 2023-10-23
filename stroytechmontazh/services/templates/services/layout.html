@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" prefix="og: https://ogp.me/ns#">
   <head>
     <title>{% block title %}{{ company_info.name }}{% endblock %}</title>
     <meta charset="UTF-8">
@@ -9,15 +9,22 @@
     <meta name="description" content="{% block description %}Проектирование, обслуживание, ремонт и промывка систем отопления и отопительного оборудования {% endblock %} {{ company_info.location }}">
     <meta name="keywords" content="отопление, отопительное оборудование, системы отопления, проектирование, обслуживание, ремонт, промывка, {{ company_info.name }}, {{ company_info.location }}">
     <meta name="robots" content="index, follow">
+    <meta http-equiv="refresh" content="0; url={% url 'index' %}">
 <!--    OpenGraph-->
     <meta property="og:title" content="{% block og_title %}Проектирование, обслуживание, ремонт и промывка систем отопления и отопительного оборудования {{ company_info.location }}{% endblock %}" />
     <meta property="og:description" content="{% block og_description %}Заказывайте услуги по отоплению у нас! Работы будут выполнены в срок, качественно и с гарантией! Номер: {{ company_info.phone }} {% endblock %}"/>
-    <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="{% block og_type %}article{% endblock %}" />
     <meta property="og:url" content="https://stroytechmontazh.ru{% block og_url %}{% endblock %}" />
-    <meta property="og:site_name" content="Компания '{{ company_info.name }}'. Услуги по отоплению."/>
-    <meta property="og:image" content="https://stroytechmontazh.ru{% block og_image %}{% static 'flushing/images/back-for-services-base-clear.webp' %}{% endblock %}" />
+    <meta property="og:site_name" content="{{ company_info.name }}"/>
+    <meta property="og:image" content="https://stroytechmontazh.ru/{% block og_image %}{% static 'services/images/back-for-services-base-clear.webp' %}{% endblock %}" />
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://stroytechmontazh.ru/{% block og_image_for_tg %}{% static 'services/images/back-for-services-base-clear.webp' %}{% endblock %}"/>
+
+
 <!--   END OpenGraph-->
 
 <!-- Card Product -->
@@ -26,25 +33,24 @@
 <!-- End Card Product -->
 
 <!--    FAVICON AND MANIFEST  -->
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'flushing/images/touch/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'flushing/images/touch/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'flushing/images/touch/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'flushing/images/touch/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'flushing/images/touch/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'flushing/images/touch/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'flushing/images/touch/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'flushing/images/touch/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'flushing/images/touch/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'flushing/images/touch/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="144x144"  href="{% static 'flushing/images/touch/android-icon-144x144.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'flushing/images/touch/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'flushing/images/touch/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'flushing/images/touch/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'flushing/images/touch/manifest.json' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'services/images/touch/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'services/images/touch/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'services/images/touch/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'services/images/touch/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'services/images/touch/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'services/images/touch/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'services/images/touch/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'services/images/touch/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'services/images/touch/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'services/images/touch/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="144x144"  href="{% static 'services/images/touch/android-icon-144x144.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'services/images/touch/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'services/images/touch/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'services/images/touch/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'services/images/touch/manifest.json' %}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static 'flushing/images/touch/ms-icon-144x144.png' %}">
+    <meta name="msapplication-TileImage" content="{% static 'services/images/touch/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
-    <link rel="manifest" href="{% static 'flushing/images/touch/manifest.json' %}">
 <!--  END FAVICON AND MANIFEST  -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
