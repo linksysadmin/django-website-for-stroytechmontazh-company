@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<yml_catalog date="">
+  <shop>
+    <name></name>
+    <company></company>
+    <url></url>
+    <email></email>
+    <currencies>
+      <currency id="RUR" rate="1" />
+    </currencies>
+    <categories>
+    </categories>
+    <sets>
+    </sets>
+    <offers>
+    </offers>
+  </shop>
+</yml_catalog>

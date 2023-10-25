@@ -16,3 +16,4 @@ def send_message_to_telegram(user_data):
     }
     response = requests.post(url, params)
     response.raise_for_status()
+

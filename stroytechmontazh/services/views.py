@@ -70,15 +70,6 @@ def article_detail(request, article_slug):
     return render(request, 'services/article.html', context=context)
 
 
-# def topic_detail(request, topic_slug):
-#     topic = get_object_or_404(TopicArticle, slug=topic_slug)
-#     articles = Article.objects.filter(topic=topic, is_published=True)
-#     context = {
-#         'topic': topic,
-#         'articles': articles,
-#     }
-#     return render(request, 'services/topic.html', context=context)
-
 
 def page_not_found(request, exception):
     return render(request, 'services/404.html', status=404)

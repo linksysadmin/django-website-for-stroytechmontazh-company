@@ -154,7 +154,7 @@ class Review(models.Model):
 
 class Feedback(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя потенциального клиента')
-    phone = models.CharField(max_length=16, verbose_name='Номер клиента')
+    phone = models.CharField(max_length=30, verbose_name='Номер клиента')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
 

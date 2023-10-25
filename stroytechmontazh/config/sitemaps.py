@@ -10,3 +10,11 @@ class ServicesSitemap(Sitemap):
 class ArticlesSitemap(Sitemap):
     def items(self):
         return Article.published.all()
+
+
+class MainPage(Sitemap):
+    def items(self):
+        return ['index']
+
+    def location(self, item):
+        return reverse('index')

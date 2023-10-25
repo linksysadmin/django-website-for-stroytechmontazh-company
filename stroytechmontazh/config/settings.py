@@ -32,18 +32,20 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 #     }
 # }
 
-ALLOWED_HOSTS = ['94.131.111.6', 'localhost', 'stroytechmontazh.ru', '127.0.0.1']
+ALLOWED_HOSTS = ['94.131.111.6', 'localhost', 'stroytechmontazh.ru', 'www.stroytechmontazh.ru', '127.0.0.1']
 
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
 INSTALLED_APPS = [
+    'rest_framework',   # For rest framework django
     'django.contrib.sitemaps',  # For sitemap.xml
     'django.contrib.sites',  # For sitemap.xml
     "debug_toolbar",
     'sass_processor',  # For context_processors.py
     'services',
+    'api_service',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,7 +71,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'INFO',
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
             'filename': 'log.log',
             'formatter': 'verbose'
@@ -79,11 +81,11 @@ LOGGING = {
         'django': {
             'handlers': ['file'],
             'propagate': True,
-            'level': 'INFO',
+            'level': 'WARNING',
         },
         'services': {
             'handlers': ['file'],
-            'level': 'INFO',
+            'level': 'WARNING',
         },
     }
 }
@@ -187,3 +189,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ]
+# }
