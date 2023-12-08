@@ -16,8 +16,6 @@ class ContactForm(forms.ModelForm):
             'phone' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Телефон'}),
         }
 
-
-
     # def clean_phone(self):
     #     phone = self.cleaned_data['phone']
     #

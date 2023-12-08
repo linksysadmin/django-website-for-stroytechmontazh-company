@@ -3,7 +3,7 @@
 
 {% block title %}{{ service_type.title }}{% endblock %}
 {% block description %}{{ service_type.title }}{% endblock %}
-
+{% block og_title %}{{ service_type.title }}{% endblock %}
 
 {% block content %}
   {% if messages %}
@@ -34,6 +34,10 @@
       </div>
     </div>
 
+<!--ABOUT-->
+{% block about %}
+{% endblock %}
+<!--END ABOUT-->
 
 <!--  SERVICES-->
     <div class="site-section" id="services-section">
@@ -50,7 +54,7 @@
                 <div class="svg-icon">
                   <img src="{% static 'services/images/service-image.webp' %}" alt="{{ service.title }}" class="img-fluid">
                 </div>
-                <a style="color: #666666;" href="{{ service.get_absolute_url }}">
+                <a style="color: #000000;" href="{{ service.get_absolute_url }}">
                   <div class="service-about">
                   <h3>{{ service.title }}</h3>
                   {% if service.sub_service_type %}
@@ -73,7 +77,8 @@
       </div>
     </div>
 <!-- END SERVICES-->
-
+{% block additional_info %}
+{% endblock  %}
 <!--  PRICE-->
     <div class="site-section" id="price">
       <div class="container">

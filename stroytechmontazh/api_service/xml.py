@@ -85,7 +85,7 @@ def generate_xml(request, data):
         if service.image:
             picture.text = request.build_absolute_uri(service.image.url)
         else:
-            picture.text = request.build_absolute_uri(service.get_absolute_url())
+            picture.text = 'https://stroytechmontazh.ru/media/articles_images/m-services-base.webp'
 
         description = ET.SubElement(offer_element, 'description')
         description.text = f"{service.title}. {company_info.location}"
@@ -119,7 +119,8 @@ def generate_xml(request, data):
         conversion.text = str(1.935)
 
         phone_link = ET.SubElement(offer_element, 'param')
-        phone_link.set('name', 'https://stroytechmontazh.ru/#contact-section')
+        phone_link.set('name', 'Ссылка на телефон')
+        phone_link.text = "https://stroytechmontazh.ru/#contact-section"
         # здесь можете задать ссылку на телефон, например phone_link.text = "tel:+79123456789"
 
         home_visit = ET.SubElement(offer_element, 'param')

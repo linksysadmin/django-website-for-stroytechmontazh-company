@@ -23,7 +23,6 @@ class CompanyInfo(models.Model):
         verbose_name_plural = 'Информация о компании'
 
 
-
 class ServiceType(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
@@ -53,7 +52,6 @@ class SubTypeService(models.Model):
         verbose_name_plural = 'Доп. подтипы'
 
 
-
 class Service(models.Model):
     class Status(models.IntegerChoices):
         NOT_PUBLISHED = 0, 'Не опубликовано'
@@ -73,9 +71,11 @@ class Service(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, verbose_name='Тип услуги')
-    sub_service_type = models.ForeignKey(SubTypeService, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Подтип')
+    sub_service_type = models.ForeignKey(SubTypeService, null=True, blank=True, on_delete=models.CASCADE,
+                                         verbose_name='Подтип')
     description = models.TextField(verbose_name='Описание')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Стоимость')
+    discount = models.IntegerField(blank=True, null=True, verbose_name='Скидка %')
     unit = models.CharField(max_length=20, choices=UNIT, default='service', verbose_name='Единица измерения')
     image = models.ImageField(upload_to='service_images/', null=True, blank=True, verbose_name='Изображение')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
@@ -93,7 +93,6 @@ class Service(models.Model):
 
     def get_service_unit(self):
         return dict(self.UNIT).get(self.unit)  # type: ignore
-
 
     class Meta:
         verbose_name = 'Услуга'
@@ -194,6 +193,3 @@ class Article(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
         ordering = ['time_create']
-
-
-

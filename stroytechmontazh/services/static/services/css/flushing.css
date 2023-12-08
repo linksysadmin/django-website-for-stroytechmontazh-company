@@ -1,0 +1,54 @@
+/* Стилизация для элемента details */
+details {
+  margin-top: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+
+/* Изменение стиля, когда детали открыты */
+details[open] {
+  background-color: #f5f5f5;
+}
+
+/* Стилизация для элемента summary */
+summary {
+  position: relative;
+  overflow: hidden; /* Для скрытия маркера по умолчанию */
+  background-color: #0a9ab4;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  outline: none; /* Убирает синюю обводку, появляющуюся при фокусировке в некоторых браузерах */
+}
+
+
+summary h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin-left: 1.5rem; /* Отступ текста h3 для уступа от маркера */
+  position: relative; /* Размещение текста h3 относительно summary */
+  display: inline; /* Размещение в строку */
+}
+
+summary::before {
+  content: ""; /* Создание пустого контента */
+  position: absolute; /* Абсолютное позиционирование маркера */
+  width: 1rem; /* Ширина маркера */
+  height: 1rem; /* Высота маркера */
+  background-color: #0a9ab4; /* Цвет фона маркера */
+  border-radius: 50%; /* Создание круглого маркера */
+  left: 0; /* Расположение слева */
+  top: 50%; /* Вертикальное выравнивание */
+  transform: translateY(-50%); /* Корректировка вертикального выравнивания */
+}
+/* Применение стиля к элементам списка внутри деталей */
+details ul {
+  list-style-position: inside;
+      padding-inline-start: 0px;
+}
+/* Стилизация для элемента li внутри details */
+details li {
+  margin-bottom: 5px;
+}
+

@@ -4,7 +4,7 @@ from .models import *
 from .forms import ContactForm
 from django.contrib import messages
 
-from .telegram import send_message_to_telegram
+from .utils import send_message_to_telegram, format_phone_number
 
 
 def index(request):
@@ -15,9 +15,9 @@ def index(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            user_data = form.cleaned_data
             form.save()
             messages.success(request, "Заявка успешно отправлена!")
-            user_data = form.cleaned_data
             send_message_to_telegram(user_data)
             return redirect('index')
 
@@ -37,7 +37,6 @@ def service_type_detail(request, service_type_slug):
     reviews = Review.objects.filter(service_type=service_type)
     section_for_what = SectionForWhatService.objects.filter(service_type=service_type)
 
-
     context = {
         'services_gallery': services_gallery,
         'service_type': service_type,
@@ -47,7 +46,14 @@ def service_type_detail(request, service_type_slug):
         'reviews': reviews,
         'has_subtype':  service_type.has_subtype
     }
-    return render(request, 'services/service_type.html', context=context)
+
+    match service_type_slug:
+        case 'promyvka-sistem-otopleniya':
+            template_name = 'services/flushing.html'
+        case _:
+            template_name = 'services/service_type.html'
+
+    return render(request, template_name=template_name, context=context)
 
 
 def service_detail(request, service_type_slug, service_slug):

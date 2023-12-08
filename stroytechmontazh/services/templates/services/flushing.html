@@ -1,0 +1,120 @@
+{% extends 'services/service_type.html' %}
+{% load static %}
+{% block head_links  %}
+    <link rel="stylesheet" href="{% static 'services/css/flushing.css' %}" type="text/css">
+{% endblock %}
+<!--ABOUT-->
+{% block about %}
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative" style="text-align: center;">
+            <h2 class="section-title text-center mb-5" >О нас</h2>
+          </div>
+          <div class="col-lg-4">
+            <p>"Стройтехмонтаж" - ваш надежный партнер в области обслуживания и поддержки отопительных систем. Наша
+              компания специализируется на качественной промывке систем отопления и отопительного оборудования,
+              ориентируясь на индивидуальные потребности каждого клиента. Мы понимаем, насколько важно обеспечить
+              эффективную работу систем отопления для комфорта и безопасности вашего дома или бизнеса. Поэтому каждый
+              этап нашей работы выполняется с максимальной ответственностью и профессионализмом.</p>
+          </div>
+          <div style="text-align: center;" class="col-lg-4">
+            <img width="200" height="200" src="{% static 'services/images/logo_without_back.png' %}" alt="Логотип компании {{ company_info.name }}" class="img-fluid">
+          </div>
+          <div class="col-lg-4">
+            <p>Наша цель — обеспечить вашему дому или бизнесу надежную и эффективную систему отопления, минимизируя
+              возможные проблемы и расходы на обслуживание в будущем. Выбрав "Стройтехмонтаж", вы можете быть уверены
+              в надежности, профессионализме и отличном результате. Доверьте заботу о вашей системе отопления
+              профессионалам и наслаждайтесь комфортом и уверенностью в качестве! Мы готовы помочь вам.
+              Свяжитесь с нами сегодня, и доверьте нам заботу о вашей системе отопления.</p>
+          </div>
+          <div>
+            <h3 style="text-align: center; margin: 5vh;">Чем мы можем быть полезны</h3>
+            <ul>
+              <li>Промывка систем отопления и радиаторов с применением передовых технологий. Мы предлагаем комплексный подход к очистке отопительных систем, в том числе удаление накипи, ржавчины и других отложений, что позволяет значительно повысить эффективность работы отопительного оборудования.</li>
+              <li>Работа с различными типами систем. Независимо от типа вашей системы – традиционный котел, теплый пол или современная гидравлическая система, мы обеспечим ее оптимальную работу.</li>
+              <li>Гарантированная надежность. Наши специалисты — опытные профессионалы, имеющие обширные знания в сфере отопительных систем. Мы работаем с использованием лучшего оборудования и материалов, гарантируя качество и долговечность наших услуг.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+<!--END ABOUT-->
+
+<!--ADDITIONAL INFO-->
+{% block additional_info %}
+    <div class="site-section" id="questions">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative" style="text-align: center;">
+            <h2 class="section-title text-center mb-5">Вопросы по промывке</h2>
+              <details>
+                <summary><h3>Как часто нужно промывать систему отопления?</h3></summary>
+                <div class="card card-body mt-2">
+                  <ul>
+                    <li>Раз в 3-5 лет, если теплоноситель антифриз.</li>
+                    <li>Раз в 8-10 лет — если подготовленная вода.</li>
+                  </ul>
+                </div>
+              </details>
+              <details>
+                <summary><h3>Как понять когда пора промывать систему отопления?</h3></summary>
+                <div class="card card-body mt-2">
+                  <ul>
+                    <li>1. Появление шлама в грязевом фильтре</li>
+                    <li>2. Ухудшение теплоотдачи радиаторов или неравномерный прогрев</li>
+                    <li>3. Перестал греть теплый пол, весь или частично</li>
+                    <li>4. Котел потребляет больше ресурсов</li>
+                    <li>5. Шум из котла, отключение по перегреву, выпадение в аварию</li>
+                  </ul>
+                </div>
+            </details>
+            <details>
+                <summary><h3>Как оплатить заказ?</h3></summary>
+                <div class="card card-body mt-2">
+                  <p>По своему желанию вы можете оплатить заказ наличными или онлайн переводом на карту мастера
+                    выполнявшего работу. Оплата произодится при подписании акта выполненых работ.</p>
+                </div>
+            </details>
+            <details>
+                <summary><h3>Можно ли получить консультацию по телефону?</h3></summary>
+                <div class="card card-body mt-2">
+                  <p>Да, конечно! Мы бесплатно консультируем наших клиентов! При этом важно понимать, для того, чтобы
+                    точно определить причину, мастеру нужно видеть вашу систему отопления.</p>
+                </div>
+            </details>
+            <details>
+                <summary><h3>Могу ли я оформить предзаказ?</h3></summary>
+                <div class="card card-body mt-2">
+                  <p>Да, конечно! Звоните нам по номеру: <a href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a> либо заказывайте <a href="#contact-section">обратный звонок</a> и мы свяжемся с Вами в ближайшее время!</p>
+                </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-section" id="example">
+      <div class="container">
+        <div class="row ">
+          <div class="col-12 mb-4 position-relative" style="text-align: center;">
+            <h2 class="section-title text-center mb-5">Пример комплексной промывки</h2>
+              <iframe width="90%" height="500px" src="https://www.youtube.com/embed/G1EuiETQDnM?si=thSjfZHugu9BJDJy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock  %}
+<!--END ADDITIONAL INFO-->
+
+{% block scripts  %}
+
+{% endblock %}
+
+
+
+
+
+
+
