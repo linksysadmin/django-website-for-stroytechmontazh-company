@@ -3,7 +3,9 @@
 
 
 {% block description %}Проектирование, обслуживание, ремонт и промывка систем отопления и отопительного оборудования{% endblock %}
-
+{% block head_links  %}
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11.0.5/swiper-bundle.min.css">
+{% endblock %}
 {% block content %}
   {% if messages %}
   <div class="transparent-message">
@@ -15,7 +17,7 @@
   </div>
   {% endif %}
 
-    <div class="site-blocks-cover overlay bg-light" style="background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.8)),  url('{% static 'services/images/heating-system.webp' %}'); " id="home-section">
+    <div class="site-blocks-cover overlay bg-light with-background-image"  id="home-section">
       <div class="container">
         <div class="row justify-content-center">
 
@@ -26,8 +28,8 @@
                 <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">
                     {{ company_info.about }}
                 </p>
-                <p data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-secondary">Услуги</a></p>
-                <p data-aos="fade-up" data-aos-delay="200"><a href="#contact-section" class="btn smoothscroll btn-primary">Заказать</a></p>
+                <span data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-secondary">Услуги</a></span>
+                <span data-aos="fade-up" data-aos-delay="200"><a href="#contact-section" class="btn smoothscroll btn-primary">Заказать</a></span>
               </div>
             </div>
           </div>
@@ -149,37 +151,39 @@
 
 
 
+<!-- OBJECTS -->
     <section class="site-section block__62272" id="projects-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 position-relative">
-            <h2 class="section-title text-center mb-5">Работы</h2>
+            <h2 class="section-title text-center mb-5">Завершённые работы/объекты</h2>
           </div>
-        </div>
-
-        <div class="row justify-content-center mb-5" data-aos="fade">
-          <div id="filters" class="filters text-center button-group col-md-7">
-            <button class="btn btn-primary active" data-filter="*">Все</button>
-            {% for type in services_types %}
-                <button class="btn btn-primary" data-filter=".{{ type.pk }}">{{ type.title }}</button>
-            {% endfor %}
-          </div>
-        </div>
-
-        <div id="posts" class="row no-gutter">
-          {% for image in services_gallery %}
-              <div class="item {{ image.service.pk }} col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
-                <a aria-label="Увеличить" href="{{ image.image.url }}" class="item-wrap fancybox">
-                  <span class="icon-search2"></span>
-                  <img class="img-fluid" alt="{{ type.title }}" src="{{ image.image.url }}">
-                </a>
+          {% for obj in objects %}
+          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4 col-md-obj-and-article">
+            <div class="blog_entry">
+              <a href="{{ obj.get_absolute_url }}">
+              {% if obj.image %}
+                <img src="{{ obj.image.url }}" alt="{{ obj.title }}" class="img-fluid">
+              {% else %}
+                  <img src="{% static 'services/images/heating-system.webp' %}" alt="{{ obj.title }}" class="img-fluid">
+              {% endif %}
+              </a>
+              <div class="p-4 bg-white">
+                <span>{{ obj.title }}</span>
+                <span class="date">{{ obj.time_create }}</span>
+                <p>{{ obj.description|truncatewords:5 }}</p>
+                <p class="more"><a href="{{ obj.get_absolute_url }}">Подробнее</a></p>
               </div>
+            </div>
+          </div>
           {% endfor %}
         </div>
       </div>
     </section>
+<!-- END OBJECTS -->
 
 
+<!-- REVIEW -->
     <section class="site-section bg-primary">
       <div class="container">
         <div class="row">
@@ -190,8 +194,7 @@
         <div class="owl-carousel slide-one-item">
           {% for review in reviews %}
           <div class="slide">
-<!--            <img style="max-width: 20%;" src="{% static 'services/images/reviews/review.webp' %}" alt="Отзыв клиента">-->
-                <p><cite> {{ review.client_name }}</cite></p>
+                <cite> {{ review.client_name }}</cite>
               <blockquote>
                 <p>{{ review.text }}</p>
               </blockquote>
@@ -205,7 +208,7 @@
         </div>
       </div>
     </section>
-
+<!--  END REVIEW  -->
 
     <section class="site-section bg-light" id="blog-section">
       <div class="container">
@@ -214,13 +217,13 @@
             <h2 class="section-title text-center mb-5">Статьи</h2>
           </div>
           {% for article in articles %}
-          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4">
+          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4 col-md-obj-and-article">
             <div class="blog_entry">
               <a href="{{ article.get_absolute_url }}">
               {% if article.image %}
                 <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid">
               {% else %}
-                  <img src="{% static 'services/images/back-for-services-base-clear.webp' %}" alt="{{ article.title }}" class="img-fluid">
+                  <img src="{% static 'services/images/heating-system.webp' %}" alt="{{ article.title }}" class="img-fluid">
               {% endif %}
               </a>
               <div class="p-4 bg-white">
@@ -236,7 +239,10 @@
       </div>
     </section>
 {% endblock %}
-
+{% block scripts  %}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js" type="text/javascript"></script>
+<script src="{% static 'services/js/object-cards.js' %}" type="module"></script>
+{% endblock %}
 
 
 

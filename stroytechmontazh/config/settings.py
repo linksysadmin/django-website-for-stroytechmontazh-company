@@ -39,11 +39,13 @@ INTERNAL_IPS = [
 ]
 
 INSTALLED_APPS = [
+    'django_extensions',
     'rest_framework',   # For rest framework django
     'django.contrib.sitemaps',  # For sitemap.xml
     'django.contrib.sites',  # For sitemap.xml
     "debug_toolbar",
     'sass_processor',  # For context_processors.py
+    'users.apps.UsersConfig',  # For auth
     'services',
     'api_service',
     'django.contrib.admin',
@@ -129,28 +131,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": DB_NAME,
+        "USER": DB_USER,
+        "PASSWORD": DB_PASS,
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
-
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": DB_NAME,
-#         "USER": DB_USER,
-#         "PASSWORD": DB_PASS,
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#
-#         #        "OPTIONS": {
-#         #            "service": ".pg_service.conf",
-#         #            "passfile": ".pgpass",
-#         #        },
-#     }
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -25,6 +25,7 @@ urlpatterns = [
     path('enter/', admin.site.urls),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     path('', include('services.urls')),
+    path('users/', include('users.urls', namespace='users')),   # namespace - пространство имен (users:login, users:logout)
     path('api/v4/', include(router.urls)),
     path('api/', include('api_service.urls')),
 ]

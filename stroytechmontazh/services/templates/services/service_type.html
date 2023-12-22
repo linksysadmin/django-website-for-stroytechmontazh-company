@@ -25,8 +25,8 @@
               <div class="col-lg-8">
                 <h1 class="text-white" data-aos="fade-up" data-aos-delay="">{{ service_type.title }}</h1>
                 <p class="lead text-white" data-aos="fade-up" data-aos-delay="100">{{ service_type.description|truncatewords:30 }}</p>
-                <p data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-secondary">Услуги</a></p>
-                <p data-aos="fade-up" data-aos-delay="200"><a href="#contact-section" class="btn smoothscroll btn-primary">Заказать</a></p>
+                <span data-aos="fade-up" data-aos-delay="200"><a href="#services-section" class="btn smoothscroll btn-secondary">Услуги</a></span>
+                <span data-aos="fade-up" data-aos-delay="200"><a href="#contact-section" class="btn smoothscroll btn-primary">Заказать</a></span>
               </div>
             </div>
           </div>
@@ -138,26 +138,39 @@
 
 
 
+
+<!-- OBJECTS -->
+    {% if objects %}
     <section class="site-section block__62272" id="projects-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 position-relative">
-            <h2 class="section-title text-center mb-5">Работы</h2>
+            <h2 class="section-title text-center mb-5">Завершённые работы/объекты</h2>
           </div>
-        </div>
-
-        <div id="posts" class="row no-gutter">
-          {% for image in services_gallery %}
-              <div class="item {{ image.service.pk }} col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
-                <a href="{{ image.image.url }}" class="item-wrap fancybox">
-                  <span class="icon-search2"></span>
-                  <img class="img-fluid" alt="{{ service_type.title }}" src="{{ image.image.url }}">
-                </a>
+          {% for obj in objects %}
+          <div class="col-md-6 mb-5 mb-lg-0 col-lg-4 col-md-obj-and-article">
+            <div class="blog_entry">
+              <a href="{{ obj.get_absolute_url }}">
+              {% if obj.image %}
+                <img src="{{ obj.image.url }}" alt="{{ obj.title }}" class="img-fluid">
+              {% else %}
+                  <img src="{% static 'services/images/heating-system.webp' %}" alt="{{ obj.title }}" class="img-fluid">
+              {% endif %}
+              </a>
+              <div class="p-4 bg-white">
+                <span>{{ obj.title }}</span>
+                <span class="date">{{ obj.time_create }}</span>
+                <p>{{ obj.description|truncatewords:5 }}</p>
+                <p class="more"><a href="{{ obj.get_absolute_url }}">Подробнее</a></p>
               </div>
+            </div>
+          </div>
           {% endfor %}
         </div>
       </div>
     </section>
+    {% endif %}
+<!-- END OBJECTS -->
 
 
     <section class="site-section bg-primary">
@@ -171,7 +184,7 @@
           {% for review in reviews %}
           <div class="slide">
 <!--            <img style="max-width: 20%;" src="{% static 'services/images/reviews/review.webp' %}" alt="Отзыв клиента">-->
-                <p><cite> {{ review.client_name }}</cite></p>
+                <cite> {{ review.client_name }}</cite>
               <blockquote>
                 <p>{{ review.text }}</p>
               </blockquote>

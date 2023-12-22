@@ -1,0 +1,102 @@
+{% extends 'services/layout.html' %}
+{% load static %}
+
+<!--{% block title %}{{ service.title }}{% endblock %}-->
+<!--{% block description %}{{ service.title }}{% endblock %}-->
+
+<!-- Open graph for service -->
+<!--{% block og_title %}{{ service.title }}{% endblock %}-->
+<!--{% block og_description %}{{ service.description|truncatewords:15 }}{% endblock %}-->
+<!--{% block og_type %}product{% endblock %}-->
+<!--{% block og_url %}{{ service.get_absolute_url }}{% endblock %}-->
+<!--{% block og_image %}{% if service.image %}{{ service.image.url }}{% else %}{% static 'services/images/services_base.webp' %}{% endif %}{% endblock %}-->
+<!--{% block og_image_for_tg %}{% if service.image %}{{ service.image.url }}{% else %}{% static 'services/images/services_base.webp' %}{% endif %}{% endblock %}-->
+<!-- End Open graph for service -->
+
+
+{% block content %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center align-self-center text-intro">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <h1 class="text-white">{{ object.title }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="site-section first-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 blog-content">
+            <h2>Объект: {{ object.title }}</h2>
+            <img class="img-fluid" alt="{{ object.title }}" src="{{ object.image.url }}">
+            <p class="lead">{{ object.description }}</p>
+            
+            {% if service.video_url %}
+            <h2 style="margin-bottom: 1em;">{{ object.title }}</h2>
+            <iframe style="width: 100%; height: 300px; max-height: 100%;" src="{{ service.video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              {% endif %}
+
+
+            <section class="site-section block__62272" id="projects-section">
+              <div class="container">
+                <div class="row mb-5">
+                  <div class="col-12 position-relative">
+                    <h2 class="section-title text-center mb-5">Изображения объекта</h2>
+                  </div>
+                </div>
+            <!-- GALLERY -->
+                <div id="posts" class="row no-gutter">
+                  {% for image in object_gallery %}
+                      <div class="item {{ image.service.pk }} col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
+                        <a aria-label="Увеличить" href="{{ image.image.url }}" class="item-wrap fancybox">
+                          <span class="icon-search2"></span>
+                          <img class="img-fluid" alt="{{ type.title }}" src="{{ image.image.url }}">
+                        </a>
+                      </div>
+                  {% endfor %}
+                </div>
+              <!-- END GALLERY -->
+                <div class="pt-5">
+              <p>Категория: <a href="{{ object.service_type.get_absolute_url }}">{{ object.service_type.title }}</a></p>
+                </div>
+              <p class="lead">{{ object.service_type.description }}</p>
+              </div>
+            </section>
+
+
+
+
+          </div>
+
+          <div class="col-md-4 sidebar">
+            <div class="sidebar-box">
+              <p class="text-uppercase" style="font-size: large;">{{ company_info.name }}</p>
+              <p>{{ company_info.about|truncatewords:15 }}</p>
+              <p><a href="{% url 'index' %}" class="btn btn-primary text-white">Подробнее</a></p>
+            </div>
+
+            <div class="sidebar-box">
+              <h2 class="text-uppercase">Услуги</h2>
+              <ul>
+                {% for type in services_types %}
+                <li><a href="{{ type.get_absolute_url }}">{{ type.title }}</a></li>
+                {% endfor %}
+              </ul>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+{% endblock %}

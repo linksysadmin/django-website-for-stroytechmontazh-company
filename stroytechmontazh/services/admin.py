@@ -32,18 +32,36 @@ class ServiceAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-@admin.register(Feedback)
-class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'phone', 'time_create')
-    list_display_links = ('id', 'name')
-    search_fields = ('name',)
-
-
 @admin.register(ServiceGallery)
 class ServiceGalleryAdmin(admin.ModelAdmin):
     list_display = ('id', 'service', 'is_published', 'time_create')
     list_display_links = ('id', 'service')
     search_fields = ('service',)
+
+
+
+@admin.register(Object)
+class ObjectAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'date','object_type', 'is_published')
+    list_display_links = ('id', 'title')
+    list_filter = ("is_published", 'date', "object_type")  # поля по которым можно отфильтровать
+    search_fields = ('title',)
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(ObjectGallery)
+class ObjectGalleryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'object', 'is_published', 'time_create')
+    list_display_links = ('id', 'object')
+    search_fields = ('object',)
+
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'phone', 'time_create')
+    list_display_links = ('id', 'name')
+    search_fields = ('name',)
 
 
 @admin.register(Article)

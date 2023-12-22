@@ -1,3 +1,6 @@
+from datetime import date
+
+from django.utils.translation import gettext as _
 from django.db import models
 from django.urls import reverse
 
@@ -116,8 +119,8 @@ class ServiceGallery(models.Model):
         return f'{self.image}'  # type: ignore
 
     class Meta:
-        verbose_name = 'Изображение'
-        verbose_name_plural = 'Изображения'
+        verbose_name = 'Изображение услуги'
+        verbose_name_plural = 'Изображения услуг'
         ordering = ['service']
 
 
@@ -193,3 +196,66 @@ class Article(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
         ordering = ['time_create']
+
+
+
+
+class Object(models.Model):
+    class Status(models.IntegerChoices):
+        NOT_PUBLISHED = 0, 'Не опубликовано'
+        PUBLISHED = 1, 'Опубликовано'
+
+    OBJECT_TYPE = (
+        ("private_house", "Частный дом"),
+        ("company", "Предприятие"),
+        ("commercial", "Коммерческое здание"),
+    )
+
+    title = models.CharField(max_length=100, verbose_name='Название')
+    description = models.TextField(verbose_name='Описание')
+    object_type = models.CharField(max_length=20, choices=OBJECT_TYPE, default='private_house', verbose_name='Тип объекта')
+    service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, verbose_name='Тип услуги')
+    image = models.ImageField(upload_to='object_images/', null=True, blank=True, verbose_name='Изображение')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
+    date = models.DateField(_("Date"), default=date.today, blank=True,  null=True)
+
+    objects = models.Manager()
+    published = PublishedModel()
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('object_detail', kwargs={'object_slug': self.slug})
+
+    def get_object_type(self):
+        return dict(self.OBJECT_TYPE).get(self.object_type)  # type: ignore
+
+    class Meta:
+        verbose_name = 'Объект'
+        verbose_name_plural = 'Объекты'
+
+
+class ObjectGallery(models.Model):
+    class Status(models.IntegerChoices):
+        NOT_PUBLISHED = 0, 'Не опубликовано'
+        PUBLISHED = 1, 'Опубликовано'
+
+    object = models.ForeignKey(Object, on_delete=models.CASCADE, verbose_name='Объект')
+    image = models.ImageField(upload_to='object_images/', verbose_name='Изображение')
+    time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    objects = models.Manager()
+    published = PublishedModel()
+
+    def __str__(self):
+        return f'{self.image}'  # type: ignore
+
+    class Meta:
+        verbose_name = 'Изображение объекта'
+        verbose_name_plural = 'Изображения объектов'
+        ordering = ['object']
+
+

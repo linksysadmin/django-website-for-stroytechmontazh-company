@@ -1,0 +1,26 @@
+{% extends 'services/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="site-blocks-cover overlay bg-light" style="background-image: url('{% static 'services/images/background-article.webp' %}'); " id="home-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center align-self-center text-intro">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <h1 style="color: white;">Авторизация</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p><button type="submit">Войти</button></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+
+

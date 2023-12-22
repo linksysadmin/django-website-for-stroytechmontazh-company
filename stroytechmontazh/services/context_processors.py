@@ -1,5 +1,5 @@
 from .forms import ContactForm
-from .models import Service, ServiceType, CompanyInfo, Review
+from .models import ServiceType, CompanyInfo
 
 
 def contact_form(request):

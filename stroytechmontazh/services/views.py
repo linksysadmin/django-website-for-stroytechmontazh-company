@@ -1,32 +1,30 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+from django.contrib import messages
+from django.views.generic import FormView
 
 from .models import *
 from .forms import ContactForm
-from django.contrib import messages
-
-from .utils import send_message_to_telegram, format_phone_number
+from .utils import send_message_to_telegram
 
 
-def index(request):
-    services_gallery = ServiceGallery.objects.select_related('service').all()
-    articles = Article.objects.all()
-    reviews = Review.objects.all()
+class IndexHome(FormView):
+    form_class = ContactForm
+    template_name = 'services/index.html'
+    success_url = reverse_lazy('index')
 
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            user_data = form.cleaned_data
-            form.save()
-            messages.success(request, "Заявка успешно отправлена!")
-            send_message_to_telegram(user_data)
-            return redirect('index')
-
-    context = {
-        'services_gallery': services_gallery,
-        'articles': articles,
-        'reviews': reviews,
+    extra_context = {
+        'objects': Object.objects.all(),
+        'articles': Article.objects.all(),
+        'reviews': Review.objects.all(),
     }
-    return render(request, 'services/index.html', context=context)
+
+    def form_valid(self, form):
+        user_data = form.cleaned_data
+        form.save()
+        messages.success(self.request, "Заявка успешно отправлена!")
+        send_message_to_telegram(user_data)
+        return super().form_valid(form)
 
 
 def service_type_detail(request, service_type_slug):
@@ -36,6 +34,7 @@ def service_type_detail(request, service_type_slug):
     articles = Article.objects.filter(topic=service_type)
     reviews = Review.objects.filter(service_type=service_type)
     section_for_what = SectionForWhatService.objects.filter(service_type=service_type)
+    objects = Object.objects.filter(service_type=service_type)
 
     context = {
         'services_gallery': services_gallery,
@@ -44,7 +43,8 @@ def service_type_detail(request, service_type_slug):
         'articles': articles,
         'section_for_what': section_for_what,
         'reviews': reviews,
-        'has_subtype':  service_type.has_subtype
+        'has_subtype':  service_type.has_subtype,
+        'objects':  objects,
     }
 
     match service_type_slug:
@@ -66,15 +66,22 @@ def service_detail(request, service_type_slug, service_slug):
     return render(request, 'services/service.html', context=context)
 
 
-
 def article_detail(request, article_slug):
     article = get_object_or_404(Article, slug=article_slug)
-
     context = {
         'article': article,
     }
     return render(request, 'services/article.html', context=context)
 
+
+def object_detail(request, object_slug):
+    object = get_object_or_404(Object, slug=object_slug)
+    object_gallery = ObjectGallery.objects.filter(object=object)
+    context = {
+        'object': object,
+        'object_gallery': object_gallery,
+    }
+    return render(request, 'services/object_detail.html', context=context)
 
 
 def page_not_found(request, exception):
