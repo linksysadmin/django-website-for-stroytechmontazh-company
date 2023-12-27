@@ -3,44 +3,7 @@
 {% block head_links  %}
     <link rel="stylesheet" href="{% static 'services/css/flushing.css' %}" type="text/css">
 {% endblock %}
-<!--ABOUT-->
-{% block about %}
-    <div class="site-section" id="about-section">
-      <div class="container">
-        <div class="row ">
-          <div class="col-12 mb-4 position-relative" style="text-align: center;">
-            <h2 class="section-title text-center mb-5" >О нас</h2>
-          </div>
-          <div class="col-lg-4">
-            <p>"Стройтехмонтаж" - ваш надежный партнер в области обслуживания и поддержки отопительных систем. Наша
-              компания специализируется на качественной промывке систем отопления и отопительного оборудования,
-              ориентируясь на индивидуальные потребности каждого клиента. Мы понимаем, насколько важно обеспечить
-              эффективную работу систем отопления для комфорта и безопасности вашего дома или бизнеса. Поэтому каждый
-              этап нашей работы выполняется с максимальной ответственностью и профессионализмом.</p>
-          </div>
-          <div style="text-align: center;" class="col-lg-4">
-            <img width="200" height="200" src="{% static 'services/images/logo_without_back.png' %}" alt="Логотип компании {{ company_info.name }}" class="img-fluid">
-          </div>
-          <div class="col-lg-4">
-            <p>Наша цель — обеспечить вашему дому или бизнесу надежную и эффективную систему отопления, минимизируя
-              возможные проблемы и расходы на обслуживание в будущем. Выбрав "Стройтехмонтаж", вы можете быть уверены
-              в надежности, профессионализме и отличном результате. Доверьте заботу о вашей системе отопления
-              профессионалам и наслаждайтесь комфортом и уверенностью в качестве! Мы готовы помочь вам.
-              Свяжитесь с нами сегодня, и доверьте нам заботу о вашей системе отопления.</p>
-          </div>
-          <div>
-            <h3 style="text-align: center; margin: 5vh;">Чем мы можем быть полезны</h3>
-            <ul>
-              <li>Промывка систем отопления и радиаторов с применением передовых технологий. Мы предлагаем комплексный подход к очистке отопительных систем, в том числе удаление накипи, ржавчины и других отложений, что позволяет значительно повысить эффективность работы отопительного оборудования.</li>
-              <li>Работа с различными типами систем. Независимо от типа вашей системы – традиционный котел, теплый пол или современная гидравлическая система, мы обеспечим ее оптимальную работу.</li>
-              <li>Гарантированная надежность. Наши специалисты — опытные профессионалы, имеющие обширные знания в сфере отопительных систем. Мы работаем с использованием лучшего оборудования и материалов, гарантируя качество и долговечность наших услуг.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-{% endblock %}
-<!--END ABOUT-->
+
 
 <!--ADDITIONAL INFO-->
 {% block additional_info %}
@@ -94,23 +57,19 @@
         </div>
       </div>
     </div>
-    <div class="site-section" id="example">
+    <div class="site-section" id="example" style="margin-bottom: 50px;">
       <div class="container">
         <div class="row ">
           <div class="col-12 mb-4 position-relative" style="text-align: center;">
             <h2 class="section-title text-center mb-5">Пример комплексной промывки</h2>
-              <iframe width="90%" height="500px" src="https://www.youtube.com/embed/G1EuiETQDnM?si=thSjfZHugu9BJDJy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe width="80%" height="100%" src="https://www.youtube.com/embed/G1EuiETQDnM?si=thSjfZHugu9BJDJy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
         </div>
       </div>
     </div>
-
 {% endblock  %}
 <!--END ADDITIONAL INFO-->
 
-{% block scripts  %}
-
-{% endblock %}
 
 
 

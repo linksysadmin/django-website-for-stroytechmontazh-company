@@ -15,6 +15,7 @@ sitemaps = {
     'home': MainPage,
     'services': ServicesSitemap,
     'articles': ArticlesSitemap,
+    'objects': ObjectsSitemap,
 }
 
 

@@ -4,12 +4,17 @@ from services.models import *
 
 class ServicesSitemap(Sitemap):
     def items(self):
-        return Service.published.all()
+        return Service.published.all().order_by('-title')
 
 
 class ArticlesSitemap(Sitemap):
     def items(self):
-        return Article.published.all()
+        return Article.published.all().order_by('-time_create')
+
+
+class ObjectsSitemap(Sitemap):
+    def items(self):
+        return Object.published.all().order_by('-date')
 
 
 class MainPage(Sitemap):

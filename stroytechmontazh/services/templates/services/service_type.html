@@ -89,7 +89,7 @@
              <tr>
               <th scope="col">№</th>
               <th scope="col">Услуга</th>
-              {% if has_subtype %}<th scope="col">Тип</th>{% endif %}
+<!--              {% if has_subtype %}<th scope="col">Тип</th>{% endif %}-->
               <th scope="col">Стоимость от</th>
              </tr>
               {% for service in services %}
@@ -97,9 +97,9 @@
                <tr>
                  <th scope="row">{{ forloop.counter }}</th>
                  <td>{{ service.title }}</td>
-                   {% if has_subtype %}
-                   <td>{{ service.sub_service_type }}</td>
-                   {% endif %}
+<!--                   {% if has_subtype %}-->
+<!--                   <td>{{ service.sub_service_type }}</td>-->
+<!--                   {% endif %}-->
                  <td>{% if service.unit == 'service' %}
                    {{ service.price|floatformat:"0"  }} руб.
                    {% else %}

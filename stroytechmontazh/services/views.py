@@ -76,7 +76,7 @@ def article_detail(request, article_slug):
 
 def object_detail(request, object_slug):
     object = get_object_or_404(Object, slug=object_slug)
-    object_gallery = ObjectGallery.objects.filter(object=object)
+    object_gallery = ObjectGallery.objects.filter(object=object).order_by('time_create')
     context = {
         'object': object,
         'object_gallery': object_gallery,
