@@ -13,7 +13,7 @@ class ContactForm(forms.ModelForm):
         ]
         widgets = {
             'name' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}),
-            'phone' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Телефон'}),
+            'phone' : forms.TextInput(attrs={'type': 'tel', 'data-tel-input': '', 'class': 'form-control', 'placeholder': 'Телефон'}),
         }
 
     # def clean_phone(self):
