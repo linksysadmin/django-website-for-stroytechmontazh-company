@@ -32,7 +32,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 #     }
 # }
 
-ALLOWED_HOSTS = ['f699-94-131-111-6.ngrok-free.app', '94.131.111.6', 'localhost', 'stroytechmontazh.ru', 'www.stroytechmontazh.ru', '127.0.0.1']
+ALLOWED_HOSTS = ['94.131.111.6', 'localhost', 'stroytechmontazh.ru', 'www.stroytechmontazh.ru', '127.0.0.1']
 
 INTERNAL_IPS = [
     "127.0.0.1",
