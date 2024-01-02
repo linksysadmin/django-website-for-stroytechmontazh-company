@@ -4,4 +4,12 @@ stroytechmontazh/db.sqlite3
 .idea
 __pycache__/
 cache
+log.log
+stroytechmontazh/log.log
+stroytechmontazh/services/migrations/*
+!stroytechmontazh/services/migrations/__init__.py
+
+backup
+HELP.md
+
 
